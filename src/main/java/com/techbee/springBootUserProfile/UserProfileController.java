@@ -4,7 +4,9 @@ import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,21 +18,35 @@ public class UserProfileController {
 	
 	@GetMapping("/displayAllUsers")
 	public ArrayList<UserProfile> displayAllUsers() {
-		return javaSDETDAO.displayAllUser();
+		return javaSDETDAO.getAllUsers();
 		
+	}
+	
+	@GetMapping("/displayUser/{firstName}")
+	public UserProfile displayUser(@PathVariable String firstName) {
+		return javaSDETDAO.getUser(firstName);
 	}
 	
 	@PostMapping("/addUser")
 	public String addUser(@RequestBody UserProfile newUser) {
 		
 		javaSDETDAO.addUser(newUser);
-		return newUser.getName() + " added successfully!";
+		return newUser.getFirstName() + " added successfully!";
 		
 	}
 	
 	//Implement Delete
 	
-	//Implement search user by name
-	
-	//Implement update
+	@PutMapping("updateUser/{oldName}")
+	public String updateUser(@PathVariable String oldName, @RequestBody UserProfile updatedUser) {
+		UserProfile oldUser = javaSDETDAO.getUser(oldName);
+		String firstName = updatedUser.getFirstName();
+		String lastName = updatedUser.getLastName();
+		String email = updatedUser.getEmailAddress();
+		if(oldUser != null) {
+			javaSDETDAO.updateUser(oldUser, firstName, lastName, email);
+			return "update success";
+		}
+		return "update failed";
+	}
 }

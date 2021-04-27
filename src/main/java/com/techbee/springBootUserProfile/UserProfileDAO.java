@@ -11,31 +11,43 @@ public class UserProfileDAO {
 	
 	UserProfileDAO(){
 		UserProfile newStudent = new UserProfile();
-		newStudent.setName("John");
+		newStudent.setFirstName("John");
 		newStudent.setLastName("Doe");
-		newStudent.setPhone(123456);
+		newStudent.setEmailAddress("soldier@aol.com");
 		
 		javaSDETClass.add(newStudent);
 	}
 	
 	//CRUD --> Create, Read, Update and Delete
 	
-	//Create User method
+	// Create User method
 	public void addUser(UserProfile user) {
 		javaSDETClass.add(user);
 	}
 	
-	//Display All User
-	public ArrayList<UserProfile> displayAllUser() {
+	// Display All User
+	public ArrayList<UserProfile> getAllUsers() {
 		return javaSDETClass;
 	}
 	
-	//display only one user
-	public ArrayList<UserProfile> displayUser() {
-		return javaSDETClass;
+	// Display only one user
+	// NOTE: Currently only returns the first instance of User with firstname
+	public UserProfile getUser(String firstName) {
+		for(UserProfile user : javaSDETClass) {
+			if(user.getFirstName().equals(firstName))
+				return user;
+		}
+		return null;
 	}
-	//Updating user
 	
-	//Delete User
+	// Updating user
+	public void updateUser(UserProfile user, String firstName, String lastName, String email) {
+		user.setFirstName(firstName);
+		user.setLastName(lastName);
+		user.setEmailAddress(email);
+	}
+	
+	
+	// Delete User
 
 }

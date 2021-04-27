@@ -2,15 +2,17 @@ package com.techbee.springBootUserProfile;
 
 public class UserProfile {
 
-	private String name;
+	private String firstName;
 	private String lastName;
-	private int phone;
+	private String emailAddress;
+	private String password;
+	private String password_c;
 	
-	public String getName() {
-		return name;
+	public String getFirstName() {
+		return firstName;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
 	}
 	public String getLastName() {
 		return lastName;
@@ -18,11 +20,22 @@ public class UserProfile {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-	public int getPhone() {
-		return phone;
+	public String getEmailAddress() {
+		return emailAddress;
 	}
-	public void setPhone(int phone) {
-		this.phone = phone;
+	public void setEmailAddress(String emailAddress) {
+		this.emailAddress = emailAddress;
 	}
-	
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	public String getPassword_c() {
+		return password_c;
+	}
+	public void setPassword_c(String password_c) {
+		this.password_c = password_c;
+	}
 }
