@@ -31,7 +31,7 @@ public class UserProfileDAO {
 	}
 	
 	// Display only one user
-	// NOTE: Currently only returns the first instance of User with firstname
+	// NOTE: Currently only returns the first instance of User with firstName
 	public UserProfile getUser(String firstName) {
 		for(UserProfile user : javaSDETClass) {
 			if(user.getFirstName().equals(firstName))
@@ -49,5 +49,14 @@ public class UserProfileDAO {
 	
 	
 	// Delete User
+	// Note: Deletes only the first instance of User with firstName
+	public void deleteUser(String firstName) {
+		for(int i=0; i < javaSDETClass.size(); i++) {
+			if(javaSDETClass.get(i).getFirstName().equals(firstName)) {
+				javaSDETClass.remove(i);
+				break;
+			}
+		}
+	}
 
 }

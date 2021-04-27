@@ -3,6 +3,7 @@ package com.techbee.springBootUserProfile;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -48,5 +49,15 @@ public class UserProfileController {
 			return "update success";
 		}
 		return "update failed";
+	}
+	
+	@DeleteMapping("deleteUser/{name}")
+	public String deleteUser(@PathVariable String name) {
+		UserProfile user = javaSDETDAO.getUser(name);
+		if(user != null) {
+			javaSDETDAO.deleteUser(name);
+			return "Delete Sucessful";
+		}
+		return "Delete Failed";
 	}
 }
